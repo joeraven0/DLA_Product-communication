@@ -1,0 +1,48 @@
+[
+    {
+        "id": "3192037b.4cd15c",
+        "type": "function",
+        "z": "f934571c.5e1f98",
+        "name": "",
+        "func": "var binary0 = msg.payload[0].toString(2);\nvar binary1 = msg.payload[1].toString(2);\nvar binary2 = msg.payload[2].toString(2);\nvar binaryString = binary0+binary1+binary2;\nmsg.payload = '0'+binary0+binary1+binary2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 280,
+        "wires": [
+            [
+                "a8638ef9.609a18"
+            ]
+        ]
+    },
+    {
+        "id": "a8638ef9.609a18",
+        "type": "function",
+        "z": "f934571c.5e1f98",
+        "name": "Sort binary and make decimal",
+        "func": "\nvar c = msg.payload;\nvar binaryArray=[];\nvar i = 0;\nvar binaryString=0;\nvar binaryValue=0;\n\n//Arrange binary string due to rules for Datalogic S85 sensor\nfor(var i=4;i<8;i++){\n    binaryArray.push(c[i]);\n}\nfor(var i=10;i<=15;i++){\n    binaryArray.push(c[i]);\n}\nfor(var i=18;i<=23;i++){\n    binaryArray.push(c[i]);\n}\n\n\n\n\n//MAKE BINARY TO DECIMAL BY USING 2^i BITSHIFT RULE!\n\n//Invert array values, end element to beginning\nvar invertbinaryArray=[];\nfor(var i=0;i<16;i++){\n    invertbinaryArray[i]=binaryArray[15-i];\n}\n\n//Binary to decimal\nfor(var i=0;i<16;i=i+1){\n    binaryValue += (Math.pow(2,i))*Number(invertbinaryArray[i]);\n}\n\n\nmsg.payload  = binaryValue;\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 810,
+        "y": 260,
+        "wires": [
+            [
+                "c48f435e.1d4568"
+            ]
+        ]
+    },
+    {
+        "id": "c48f435e.1d4568",
+        "type": "debug",
+        "z": "f934571c.5e1f98",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1060,
+        "y": 280,
+        "wires": []
+    }
+]
