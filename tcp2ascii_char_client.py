@@ -1,25 +1,22 @@
-#TCP client to ascii character - with function keys.
+#TCP client to ascii character - with function keys & good/bad read counter
 #Joakim Ringstad - Python 3.8
-#TCP client that converts to readable ascii keys
+
 
 #!/usr/bin/env python
 
-import socket
-import time
+import socket, time
 
-TCP_IP = '127.0.0.1'
-TCP_PORT = 51236
 
+outputFormat = True #False=ascii char, True=ascii hex
 NO_READ_STRING = "<STX><CAN><CR><LF>"
-goodCount = 0
-badCount = 0
+[TCP_IP, TCP_PORT] = ['127.0.0.1',51236]
+goodCount, badCount = (0,)*2
 
-outputFormat = 0 #0=ascii char, 1=ascii hex
 asciiTable = [
-            '<NUL>', '<SOH>', '<STX>', '<ETX>', '<EOT>', '<ENQ>', '<ACK>', '<BEL>',
-            '<BS>', '<HT>', '<LF>', '<VT>', '<FF>', '<CR>', '<SO>', '<SI>',
-            '<DLE>', '<DC1>', '<DC2>', '<DC3>', '<DC4>', '<NAK>', '<SYN>', '<ETB>',
-            '<CAN>', '<EM>', '<SUB>', '<ESC>', '<FS>', '<GS>', '<RS>', '<US>']   
+            '<NUL>','<SOH>','<STX>','<ETX>','<EOT>','<ENQ>','<ACK>','<BEL>',
+            '<BS>','<HT>','<LF>','<VT>', '<FF>','<CR>','<SO>','<SI>',
+            '<DLE>','<DC1>','<DC2>','<DC3>','<DC4>','<NAK>','<SYN>','<ETB>',
+            '<CAN>','<EM>','<SUB>','<ESC>','<FS>','<GS>','<RS>','<US>']   
    
 
 s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -37,17 +34,16 @@ while 1:
             ascii_char+=asciiTable[data[n]]
         else:
             ascii_char+=ascii_char_buffer[n]
-    if outputFormat==0:
-        if ascii_char==NO_READ_STRING:
-            badCount +=1
-        else:
-            goodCount +=1
-        goodbadread = "   \nGood: " + str(goodCount) + " Bad: " + str(badCount)
-        print(ascii_char + goodbadread)
-        
-    if outputFormat==1:
+    if not outputFormat:
+        print(ascii_char)        
+    if outputFormat:
         print(ascii_hex)
+    if ascii_char==NO_READ_STRING:
+        badCount +=1
+    else:
+        goodCount +=1
+        goodbadread = "Good: " + str(goodCount) + " Bad: " + str(badCount)
+    print(goodbadread)
 
 s.close()
-
 
