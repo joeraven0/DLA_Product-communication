@@ -1,21 +1,20 @@
 #TCP client to ascii character - with function keys.
 #Joakim Ringstad - Python 3.8
+#TCP client that converts to readable ascii keys
 
 #!/usr/bin/env python
 
 import socket
+import time
 
+TCP_IP = '127.0.0.1'
+TCP_PORT = 51236
 
-printChar = 1
-printDec = 0
-printHex = 0
+NO_READ_STRING = "<STX><CAN><CR><LF>"
+goodCount = 0
+badCount = 0
 
-Interface = 0 #0=TCP, 1=RS
-
-COM_PORT = 'COM1'
-COM_BAUD = '115200'
-
-
+outputFormat = 0 #0=ascii char, 1=ascii hex
 asciiTable = [
             '<NUL>', '<SOH>', '<STX>', '<ETX>', '<EOT>', '<ENQ>', '<ACK>', '<BEL>',
             '<BS>', '<HT>', '<LF>', '<VT>', '<FF>', '<CR>', '<SO>', '<SI>',
@@ -23,47 +22,32 @@ asciiTable = [
             '<CAN>', '<EM>', '<SUB>', '<ESC>', '<FS>', '<GS>', '<RS>', '<US>']   
    
 
+s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((TCP_IP, TCP_PORT))
+while 1:
+    data=s.recv(1024)
+    if not data:
+        print("No data")        
+        break
+    ascii_char=""
+    ascii_char_buffer = data.decode("utf-8")
+    ascii_hex = " ".join([hex(data[n]) for n in range(len(data))])
+    for n in range (len(data)):
+        if data[n]<=31:
+            ascii_char+=asciiTable[data[n]]
+        else:
+            ascii_char+=ascii_char_buffer[n]
+    if outputFormat==0:
+        if ascii_char==NO_READ_STRING:
+            badCount +=1
+        else:
+            goodCount +=1
+        goodbadread = "   \nGood: " + str(goodCount) + " Bad: " + str(badCount)
+        print(ascii_char + goodbadread)
+        
+    if outputFormat==1:
+        print(ascii_hex)
 
-def tcpConnect(TCP_IP,TCP_PORT):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((TCP_IP, TCP_PORT))
-    
-    dataRead = s.recv(1024)
-    s.close()
-    return dataRead
-
-def rsConnect():
-    
-    ser = serial.Serial('/dev/ttyACM0')
-    ser_bytes = ser.readline()
-    
-data = tcpConnect('127.0.0.1',51236)  
-
-
-hexData = []
-asciiDecStrArr = []
-asciiDecStr, asciiHexStr, asciiCharStr = ("",)*3
-
-
-i=0
-while i < len(data):
-    #To hex list
-    hexData.append((data[i].encode('hex'), 16))    
-    #Hex list to two digits decimal string list
-    asciiDecStrArr.append(("%02d" % (hexData[i],)))
-    asciiHexStr += hex(hexData[i]) + " "
-    
-    if int(asciiDecStrArr[i]) <= 31:        
-        asciiCharStr+=asciiTable[int(asciiDecStrArr[i])]
-    else:
-        asciiCharStr+=data[i]
-    asciiDecStr += asciiDecStrArr[i] + " "
-    i += 1
+s.close()
 
 
-if printChar:
-    print("Char:", asciiCharStr)
-if printDec:
-    print("ASCII (dec):", asciiDecStr)
-if printHex:
-    print("ASCI (hex):", asciiHexStr)
