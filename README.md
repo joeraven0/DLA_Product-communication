@@ -10,7 +10,7 @@
 
 ## #2_PY38_tcp2ascii_char_client.py
 > **Python 3.8**
-> Reads hex over TCP and prints non readable chars from standard ASCII-table, i.e. <STX><CR>. No need to use HyperTerminal or other old RS232 softwares anymore!
+> Reads hex over TCP and prints non readable chars from standard ASCII-table, i.e. \<STX\>\<CR\>. No need to use HyperTerminal or other old RS232 softwares anymore!
 
 ## #3_PY27_SendCFG_N-Series
 > **Python 2.7**
