@@ -1,7 +1,7 @@
 # DLA_Finished
 
 ## #1_Node-Red_S85-binary.json
-> **Node-Red**
+> **Node-Red**\n
 > Full Node-Red script for collecting and sorting data from S85-sensor over RS232 (dongle converter from RS485). Uses Node-Red Dashboard.
 
 ## #1_Node-Red_S85_binaryFunction.js
