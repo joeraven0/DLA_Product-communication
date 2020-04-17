@@ -54,7 +54,7 @@ Final working scripts not being updated anymore. See DLA_Processing for open scr
 ## #4_PY38_S85_RS232.py
 > **Python 3.8**
 > **Sensor - S85**
-> Read binary byte data from S85 RS232 (External converter from RS485 to RS232) and convert to decimal. Does same as #1 but bugfixed
+> Read binary byte data from S85 RS232 (External converter from RS485 to RS232) and convert to decimal. Does same as #1 but bugfixed (and Python instead of Javascript)
 >
 > Script steps
 > 1. Read byte package (3 bytes)
