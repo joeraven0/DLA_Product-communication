@@ -25,9 +25,9 @@ while True:
             sliced.append(bin(msg[0])[5:len(bin(msg[0]))])
             sliced.append(bin(msg[1])[4:len(bin(msg[1]))])
             sliced.append(bin(msg[2])[4:len(bin(msg[2]))])
-            #Save list to string
+            #Convert and list to string
             joinedSliced = ''.join(sliced)
-            #Sensor int value in millimeter
+            #Sensor binary value to int in millimeter
             intValue = int(''.join(sliced),2)
             #Print raw data(binary) & sensor value(int in millimeter)
             output = str("RAW INPUT: "+bin(msg[0]))+str(bin(msg[1]))+str(bin(msg[2])) + '\n' + 'Sensor value (bin): ' + joinedSliced + 'mm\n' + 'Sensor value (int): '+str(intValue) + 'mm\n'
