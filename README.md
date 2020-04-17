@@ -32,7 +32,7 @@
 >
 > Reads hex over TCP and prints non readable chars from standard ASCII-table, i.e. \<STX\>\<CR\>. No need to use HyperTerminal or other old RS232 softwares anymore!
 >
-> Guide
+> Connecting guide
 > 1. Connect TCP-device
 > 2. Set ip and port
 > 3. Begin to send data, output will be hex!
