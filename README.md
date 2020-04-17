@@ -37,7 +37,7 @@
 > 2. Set ip and port
 > 3. Begin to send data, output will be hex!
 
-## #3_PY27_SendCFG_N-Series
+## #3_PY27_SendCFG_N-Series.py
 > **Python 2.7**
 > **Matrix N**
 > Send config file to Matrix N-series by using HMP SEND_CFG command and x-modem.
