@@ -3,7 +3,7 @@
 ## #1_Node-Red_S85-binary.json
 > **Node-Red**
 > **Sensor - S85**<br>
-> BUG: Packages might get out of sync caused by slow CPU/processing times.
+> * *BUG: Packages might get out of sync caused by slow CPU/processing times.* *
 > Full Node-Red script for collecting and sorting data from S85-sensor over RS232 (dongle converter from RS485). Uses Node-Red Dashboard.
 
 ## #1_Node-Red_S85_binaryFunction.js
