@@ -26,3 +26,13 @@
 > 3. Build package
 > 4. Send package
 > 5. Exit HMP mode
+
+## #4_PY38_S85_RS232.py
+> **Python 3.8**
+>
+> Read binary byte data from S85 RS485 (RS232 converted hw) and convert convert to decimal
+> 1. Read byte package (3 bytes)
+> 2. Convert to binary string
+> 3. Remove bits according to S85 serial com guide
+> 4. Convert output bitstring to int
+> 5. Print int!
