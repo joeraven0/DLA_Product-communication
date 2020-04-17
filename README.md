@@ -6,13 +6,15 @@
 >
 > Full Node-Red script for collecting and sorting data from S85-sensor over RS232 (dongle converter from RS485). Uses Node-Red Dashboard.
 >
-> *BUG: Packages might get out of sync caused by slow CPU/processing times.*
+> *BUG: Packages might get out of sync caused by slow CPU and bad package handling.*
 
 ## #1_Node-Red_S85_binaryFunction.js
 > **Javascript**
 > **Sensor - S85**
 >
 > Javascript function file - Same code as running inside function block in .json above.
+>
+> *BUG: Packages might get out of sync caused by slow CPU and bad package handling.*
 
 ## #2_PY38_tcp2ascii_char_client.py
 > **Python 3.8**
