@@ -29,7 +29,7 @@
 > **Matrix N**
 > Send config file to Matrix N-series by using HMP SEND_CFG command and x-modem.
 >
-> Software steps
+> Script steps
 > 1. Initialize communication
 > 2. Enter HMP mode
 > 3. Build package
@@ -41,7 +41,7 @@
 > **Sensor - S85**
 > Read binary byte data from S85 RS232 (External converter from RS485 to RS232) and convert to decimal. Does same as #1 but bugfixed
 >
-> Software steps
+> Script steps
 > 1. Read byte package (3 bytes)
 > 2. Convert to binary string
 > 3. Remove bits according to S85 serial com guide
