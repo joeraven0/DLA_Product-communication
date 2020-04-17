@@ -22,6 +22,7 @@
 >
 > Javascript function file - Same code as running inside function block in .json above.
 > INFO: Intended to be used inside Node-Red flow (#1_Node-Red_S85-binary.json)
+
 > *Known bug: Packages might get out of sync caused by slow CPU and bad package handling.*
 > *Causes: Wrong distance data*
 
@@ -58,4 +59,4 @@
 > 2. Convert to binary string
 > 3. Remove bits according to S85 serial com guide
 > 4. Convert output bitstring to int
-> 5. Print int!
+> 5. Print the int (measured distance)!
