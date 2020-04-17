@@ -36,7 +36,7 @@ while True:
             if byteQueInput>1000:
                 ser.reset_input_buffer()
         else:
-            #Sensor data size is 3 byte. If not evenly divideable by three, python didn't catch all packages. CLEAR IT!
+            #Sensor data size is 3 byte. If not evenly divideable by three, python didn't catch all packages (CPU or unevenly received package). CLEAR IT!
             baddataCounter +=1
             print('INFO: Que out of sync! - Buy faster CPU!!\n Out of sync count: ' +str(baddataCounter)+'\n')
             ser.reset_input_buffer()
