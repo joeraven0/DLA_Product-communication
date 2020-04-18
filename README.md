@@ -16,7 +16,7 @@ Final working scripts not being updated anymore. See DLA_Processing for open scr
 > 5. Import json flow
 
 > *Known bug: Packages might get out of sync caused by slow CPU and bad package handling.*
-> *Causes: Wrong distance data*
+> *Output: Wrong distance data*
 
 ## #1_Node-Red_S85_binaryFunction.js
 > **Javascript**
@@ -26,7 +26,7 @@ Final working scripts not being updated anymore. See DLA_Processing for open scr
 > INFO: Intended to be used inside Node-Red flow (#1_Node-Red_S85-binary.json)
 
 > *Known bug: Packages might get out of sync caused by slow CPU and bad package handling.*
-> *Causes: Wrong distance data*
+> *Output: Wrong distance data*
 
 ## #2_PY38_tcp2ascii_char_client.py
 > **Python 3.8**
