@@ -1,0 +1,121 @@
+[
+    {
+        "id": "680211bd.d8ee48",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "2d213cf9.7c0eb4",
+        "type": "ui_template",
+        "z": "680211bd.d8ee48",
+        "group": "e6b32744.fb6ac",
+        "name": "",
+        "order": 1,
+        "width": 16,
+        "height": 16,
+        "format": "<h1>Raw data</h1>\n<p><b>Chart id: </b>{{msg.title}}</p>\n<p>String formatting #x#y#yaw#id</p>\n<p><b>x:</b> {{msg.xcent}} <b>y:</b> {{msg.ycent}} <b>yaw:</b> {{msg.yaw}}</p>\n<svg width=\"600\" height=\"600\">\n  <rect width=\"600\" height=\"600\" style=\"fill:white;stroke-width:10;stroke:rgb(0,0,0)\" />\n    <circle cx=\"300\" cy=\"300\" r=\"40\"  stroke=\"black\" stroke-width=\"4\" fill=\"white\"/>\n    <circle cx=\"{{msg.yawx}}\" cy=\"{{msg.yawy}}\" r=\"5\"  stroke=\"red\" stroke-width=\"4\" fill=\"red\"/>\n  <line x1=\"300\" y1=\"300\" x2=\"{{msg.x}}\" y2=\"{{msg.y}}\" style=\"stroke:red;stroke-width:2\" />\n</svg>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 964,
+        "y": 909.9999694824219,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f1f2e8cc.79d2d",
+        "type": "tcp in",
+        "z": "680211bd.d8ee48",
+        "name": "",
+        "server": "client",
+        "host": "192.168.3.100",
+        "port": "51236",
+        "datamode": "stream",
+        "datatype": "buffer",
+        "newline": "\\n",
+        "topic": "",
+        "base64": false,
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "f0c1d69e.e5bbd8"
+            ]
+        ]
+    },
+    {
+        "id": "46f7733e.1adb54",
+        "type": "debug",
+        "z": "680211bd.d8ee48",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 954,
+        "y": 769.9999694824219,
+        "wires": []
+    },
+    {
+        "id": "f0c1d69e.e5bbd8",
+        "type": "function",
+        "z": "680211bd.d8ee48",
+        "name": "",
+        "func": "\nlet buffermsg = msg.payload.toString();\nconst spleet = buffermsg.split('#');\nspleet[3] = Math.abs(Number(spleet[3])/10);\n\n\n//*xpos*ypos*yawpos*chartid\nyawx = (300+Math.cos(-spleet[3] * Math.PI / 180)*40);\nyawy = (300-Math.sin(-spleet[3] * Math.PI / 180)*40);\nmsg.x = (Number(spleet[1])+300);\nmsg.y = (300-Number(spleet[2]));\nmsg.xcent = msg.x-300;\nmsg.ycent = msg.y-300;\nmsg.yawx = yawx;\nmsg.yawy = yawy;\nmsg.yaw = spleet[3];\nmsg.title = spleet[4];\nmsg.payload = msg.yaw;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 654,
+        "y": 909.9999694824219,
+        "wires": [
+            [
+                "46f7733e.1adb54",
+                "2d213cf9.7c0eb4"
+            ]
+        ]
+    },
+    {
+        "id": "3337568d.04c9ca",
+        "type": "inject",
+        "z": "680211bd.d8ee48",
+        "name": "",
+        "topic": "Sample data injector",
+        "payload": "#50#-31#780#123456789",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 380.4499816894531,
+        "y": 881.9999694824219,
+        "wires": [
+            [
+                "f0c1d69e.e5bbd8"
+            ]
+        ]
+    },
+    {
+        "id": "e6b32744.fb6ac",
+        "type": "ui_group",
+        "z": "",
+        "name": "Matrix 120 AGV",
+        "tab": "dab7d769.3a1f98",
+        "order": 1,
+        "disp": true,
+        "width": "16",
+        "collapse": false
+    },
+    {
+        "id": "dab7d769.3a1f98",
+        "type": "ui_tab",
+        "z": "",
+        "name": "DLA",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
