@@ -1,4 +1,4 @@
-# DLA_Finished
+# DLA_Product-communication
 
 Some final working scripts used when I worked as a field technician at Datalogic, just for testing, troubleshooting and "getting things up and running" on customers site. These are top layer scripts, only communicating and reading data from some Datalogic products.
 
