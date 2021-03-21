@@ -1,6 +1,6 @@
 # DLA_Finished
 
-Final working scripts not being updated anymore. See DLA_Processing for open scripts.
+Some final working scripts used when I worked as a field technician at Datalogic, just for testing, troubleshooting and "getting things up and running" on customers site. These are top layer scripts, only communicating and reading data from some Datalogic products.
 
 ## #1_Node-Red_S85-binary.json
 > **Node-Red**
